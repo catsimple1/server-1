@@ -143,7 +143,9 @@ async function check(url) {
 		range: 'bytes=0-8191',
 		'accept-encoding': 'identity',
 	};
-
+	if(url.slice(0,5)==='http:'){
+        url = url.slice(0,4) + 's' + url.slice(4, -1);
+    }
 	// Set the "Referer" header.
 	headerReferer.forEach((refererValue, urlPattern) => {
 		if (isHost(urlPattern)) header.referer = refererValue;
@@ -226,9 +228,6 @@ async function check(url) {
 			return Promise.reject();
 		}
 	}
-	if(url.slice(0,5)==='http:'){
-        url = url.slice(0,4) + 's' + url.slice(4, -1);
-    }
 	return song;
 }
 
