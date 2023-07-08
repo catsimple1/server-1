@@ -226,7 +226,9 @@ async function check(url) {
 			return Promise.reject();
 		}
 	}
-
+	if(url.slice(0,5)==='http:'){
+        url = url.slice(0,4) + 's' + url.slice(4, -1);
+    }
 	return song;
 }
 
